@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+
+    // If you have enabled foreign key constraints for your database, remove this line.
+    relationMode = "prisma"
+}
+
+model Post {
+    id        String      @id @default(cuid())
+    name      String
+    checked Boolean?
+    createdAt DateTime @default(now()) // Corrected: DateTime type with @createdAt and default(now())
+}
